@@ -15,41 +15,47 @@ function App() {
     setlistData(updatedListData);
   }
   return (
-    <>
-      <div className="container w-7/12 h-96  bg-red-600  relative left-72 top-24 ">
-        <div className="heading text-xl text-center">Todo App</div>
+    
+      <div className="container mx-auto min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4" >
+        <div className="w-full sm:w-3/4 lg:w-1/2 bg-red-600 p-6 rounded-lg shadow-lg">
+        <div className="heading text-xl sm:text-2xl lg:text-3xl text-center text-white ">Todo App</div>
+        <div className="mt-4">
         <input
           type="text"
           placeholder="Add Activity"
-          className=" relative left-80 rounded-md top-2"
+          className=" w-full p-2 text-lg rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400  "
           value={activity}
           onChange={(e) => setActivity(e.target.value)}
         />
+        </div>
 
-        <div>
+        <div className="mt-4 flex justify-center">
           <button
-            className="text-2xl rounded-md bg-amber-500 relative left-96 top-5"
+            className=" bg-amber-500 text-white px-4 py-2 rounded-lg shadow hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400"
             onClick={addactivity}
           >
             Add
           </button>
         </div>
-        {listData != [] &&
-          listData.map((data, i) => {
-            return (
-              <>
-                <p key={i}>
-                  <div className="listData text-lg text-left ">{data}</div>
-                  <div className="btn-position w-14 bg-green-700">
-                    <button onClick={() => removeactivity(i)}>remove</button>
+        <div className="mt-6">
+        {listData.length > 0 &&
+          listData.map((data, i) => (
+            <div
+              
+                key={i}
+                className="flex justify-between items-center p-2 bg-gray-200 mt-2 rounded-lg shadow"
+                >
+                  <p className="listData text-lg text-gray-800 ">{data}</p>
+                  
+                    <button onClick={() => removeactivity(i)} className="btn-position bg-green-700 text-white px-4 py-1 rounded-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-600 ">remove</button>
                   </div>
-                </p>
-              </>
-            );
-          })}
-      </div>
-    </>
-  );
+          ))}
+          </div>    
+            </div>
+          </div>
+      );
+    
+  
 }
 
 export default App;
